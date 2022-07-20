@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Match Paris</title>
+    <base target="_top">
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  
+  <body onload="showBoard()">
+	<center>
+	<div class="container">
+		<div class="top">
+			<div class="topleft">
+				<img onclick="reload()" src="pics/LaLiga black transp.png">
+				<label>Size:</label>
+				<select id="level" onchange="reloadGame()">
+					<option>Small (4x4)</option>
+					<option>Medium (4x5)</option>
+					<option>Large (4x6)</option>
+				</select>
+			</div>
+			<div class="topright">
+				<label>Pairs:</label><div id="pairs">0</div>
+				<label>Moves:</label><div id="moves">0</div>			
+				<label>Time:</label><div id="timer">00:00</div>
+			</div>
+		</div>
+
+		<div class="main">
+			<table id="sud">  <!-- border="1" style="border-collapse: collapse;" -->
+			</table>
+		</div>
+	</div>
+  </body>
+  <script src="./script.js"></script>
+</html>
