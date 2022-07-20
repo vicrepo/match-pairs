@@ -7,7 +7,7 @@ html, body {
 }
 
 .container {
-	margin-top:10px;
+	margin-top:20px;
 	width:850px;
 	height:628px;
 	background-color: #fcfcfc;
@@ -20,7 +20,7 @@ html, body {
 
 .top{
 	display:flex;
-    justify-content: space-between;
+    	justify-content: space-between;
 	align-items:center;
 	width:782px;
 	height:45px;
