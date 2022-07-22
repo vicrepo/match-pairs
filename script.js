@@ -15,22 +15,30 @@
 		document.documentElement.clientWidth
 		);
 	}
-
+	
+	function getcols() {
+		let sizetxt = document.getElementById("size").value;
+		let sizecols = sizetxt.substring(sizetxt.length - 2);
+		let cols = sizecols.replace(")","");
+		return cols;
+	}
+	
 	// create/display board table
 	function showBoard(){
-		let levtxt = document.getElementById("level").value;
-		let level = levtxt.substring(levtxt.length - 2);
-		let lev = level.replace(")","");
-		let windowpx = getWidth();
-		console.log (windowpx);		
-		if (windowpx < 700) {
-			var cols = 4;
-			var rows = lev;
-		} else {
-			var cols = lev;
-			var rows = 4;
-		}
-		console.log (cols*rows);	
+		let cols = getcols();
+		let rows = 4;
+		
+		//responsive for mobile phone (vertical for 4x5 and 4x6 instead of horizontal)
+		//let windowpx = getWidth();
+		//console.log (windowpx);		
+		//if (windowpx < 700) {
+			//var cols = 4;
+			//var rows = cols;
+		//} else {
+			//var rows = 4;
+		//}
+		
+		
 		let arr = arrangeCards(cols * rows);
 		var i = 0;
 		for (var r = 0; r < rows; r++){    
@@ -40,12 +48,7 @@
 				var card = arr[i];
 				var w = 120;
 				cell.style="width:" + w + "px; height:120px;";
-				//var path = "https://drive.google.com/uc?export=view&id=";
-				//var id = "1U7d52MuBHFE7vM8F9HqCyzREvuI-pThl";
-				//var img = path + id;
-				//let theme = document.getElementById("theme").value;
-				let theme="LaLiga";
-				var img = theme + "/" + card + ".png"
+				var img = "LaLiga/" + card + ".png"
 				cell.innerHTML = 
 				'<div class="flip-box">' +
 					'<div class="flip-box-inner">' +
@@ -111,7 +114,8 @@
 						el.nextSibling.style.backgroundColor = '#fee';							
 					}, 500);
 					
-					let target=8; //change later..............
+					let cols = getcols();
+					let target= (4*cols)/2;
 					if (pairs+1==target) {
 						stopTimer();
 						setTimeout(function(){
