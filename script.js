@@ -2,10 +2,6 @@
 	localStorage.setItem("numpos", null);
 	localStorage.setItem("cardnum", null);
 	
-	function reload() {
-		location.reload()
-	}
-	
 	function getWidth() {
 		return Math.max(
 		document.body.scrollWidth,
@@ -25,7 +21,13 @@
 	
 	// create/display board table
 	function showBoard(){
-		let cols = getcols();
+		var cols = localStorage.getItem("cols");
+		if (cols==null) {
+			var cols = 4;
+			localStorage.setItem("cols", cols);
+		}
+		document.getElementById("size").value = cols;
+		//let cols = getcols(); //used before using localStorage, but didn't work in chrome
 		let rows = 4;
 		
 		//responsive for mobile phone (vertical for 4x5 and 4x6 instead of horizontal)
@@ -37,8 +39,7 @@
 		//} else {
 			//var rows = 4;
 		//}
-		
-		
+
 		let arr = arrangeCards(cols * rows);
 		var i = 0;
 		for (var r = 0; r < rows; r++){    
@@ -64,9 +65,22 @@
 			}
 		}
 	}
-
-	function reloadGame() {
+	
+	function changeSize() {
+		let cols = getcols();
+		localStorage.setItem("cols", cols);
+		//document.getElementById("sud").innerHTML = "";
+		//document.getElementById("pairs").innerText = 0;
+		//document.getElementById("moves").innerText = 0;
+		//document.getElementById("timer").innerHTML = '00:00';
+		//window.totalSeconds = 0;		
+		//showBoard();
+		reload(); //this was making the background image to blink, but is a better option
+	}
+	
+	function reload() { 
 		window.location.reload();
+		//location.reload(); //also works
 	}
 	
 	function preventDblclick(el) {
